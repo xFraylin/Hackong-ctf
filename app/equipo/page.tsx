@@ -10,7 +10,7 @@ export default function TeamPage() {
         <div className="container max-w-5xl py-12">
           <h1 className="text-4xl font-bold text-center mb-4">Nuestro Equipo</h1>
           <p className="text-center text-gray-300 mb-12">
-            Conoce a la persona detrás de xNueve MindSploit
+            Conoce a la persona detrás de Hackong2026 CTF
           </p>
 
           <div className="flex justify-center">

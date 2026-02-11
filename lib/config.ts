@@ -5,7 +5,7 @@ export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL || (typeof window !== "undefined" ? window.location.origin : "")
 
 // Nombre de la aplicación
-export const APP_NAME = "xNueve MindSploit"
+export const APP_NAME = "Hackong2026 CTF"
 
 // Configuración de autenticación
 export const AUTH_REDIRECT_URL = `${SITE_URL}/dashboard`

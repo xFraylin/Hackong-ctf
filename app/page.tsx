@@ -73,7 +73,7 @@ export default function Home() {
               <div className="mb-4 md:mb-6">
                 <Image
                   src="/logo.png"
-                  alt="xNueve MindSploit Logo"
+                  alt="Hackong2026 CTF Logo"
                   width={150}
                   height={150}
                   className="mx-auto w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48"
@@ -82,7 +82,7 @@ export default function Home() {
               </div>
               <div className="space-y-2">
                 <div className="inline-block rounded-lg bg-primary/10 px-3 py-1 text-sm text-primary">
-                  Bienvenido a xNueve MindSploit
+                  Bienvenido a Hackong2026 CTF
                 </div>
                 <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl">
                   Plataforma de Retos de Seguridad
@@ -112,7 +112,7 @@ export default function Home() {
                 <div className="rounded-full bg-primary/10 p-4 md:p-6">
                   <Image
                     src="/logo.png"
-                    alt="xNueve MindSploit Logo"
+                    alt="Hackong2026 CTF Logo"
                     width={40}
                     height={40}
                     className="w-8 h-8 md:w-10 md:h-10"
@@ -148,7 +148,7 @@ export default function Home() {
       <footer className="w-full border-t border-border/40 py-4 md:py-6">
         <div className="container flex flex-col items-center justify-center gap-2 md:gap-4 px-4">
           <p className="text-center text-xs md:text-sm text-gray-400">
-            © 2023 xNueve MindSploit. Todos los derechos reservados.
+            © 2026 Hackong2026 CTF. Todos los derechos reservados.
           </p>
         </div>
       </footer>

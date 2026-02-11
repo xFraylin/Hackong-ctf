@@ -6,12 +6,12 @@ export default function AboutPage() {
       <Navbar />
       <main className="flex-1">
         <div className="container max-w-4xl py-12">
-          <h1 className="text-4xl font-bold mb-8">Acerca de xNueve Security CTF</h1>
+          <h1 className="text-4xl font-bold mb-8">Acerca de Hackong2026 CTF</h1>
 
           <div className="space-y-8">
             <section>
               <p className="text-lg text-gray-300 mb-6">
-                xNueve Security CTF es una plataforma educativa diseñada para ayudar a estudiantes, profesionales y
+                Hackong2026 CTF es una plataforma educativa diseñada para ayudar a estudiantes, profesionales y
                 entusiastas a mejorar sus habilidades en ciberseguridad a través de desafíos prácticos y competitivos.
               </p>
             </section>
@@ -70,19 +70,19 @@ export default function AboutPage() {
               <ul className="text-primary space-y-1">
                 <li>
                   📧{" "}
-                  <a href="mailto:info@xnuevesecurity.com" className="hover:underline">
-                    info@xnuevesecurity.com
+                  <a href="mailto:info@hackong2026.com" className="hover:underline">
+                    info@hackong2026.com
                   </a>
                 </li>
                 <li>
                   📸{" "}
                   <a
-                    href="https://www.instagram.com/xnuevemindsploit/"
+                    href="https://www.instagram.com/hackong2026/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="hover:underline"
                   >
-                    @xnuevemindsploit
+                    @hackong2026
                   </a>
                 </li>
               </ul>

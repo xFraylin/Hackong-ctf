@@ -8,10 +8,10 @@ import { Toaster } from "@/components/toaster"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "xNueve MindSploit - Plataforma de Retos CTF",
+  title: "Hackong2026 CTF - Plataforma de Retos CTF",
   description: "Plataforma de retos de seguridad informática y CTF",
   icons: {
-    icon: "/favicon.png",
+    icon: "/logo.png",
   },
 }
 
