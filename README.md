@@ -1,6 +1,6 @@
 # Hackong2026 CTF
 
-Plataforma web de retos **CTF (Capture The Flag)** para aprender y competir en ciberseguridad. Los participantes se registran con **usuario y contraseña**, resuelven retos, suman puntos y compiten en el ranking. Pensada para quien quiera **usar o modificar la interfaz** (pantallas, flujos, diseño) sin meterse en el backend.
+Plataforma **temporal** de retos **CTF (Capture The Flag)** para el **workshop web de Hackong**. Sirve para que los participantes se registren con **usuario y contraseña**, resuelvan retos, sumen puntos y compitan en el ranking durante el evento. Pensada para quien quiera **usar o modificar la interfaz** (pantallas, flujos, diseño) sin meterse en el backend.
 
 ---
 
