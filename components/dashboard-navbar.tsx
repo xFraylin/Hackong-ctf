@@ -20,10 +20,9 @@ export function DashboardNavbar() {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const { data: session } = await supabase.auth.getSession()
-
-        if (session.session) {
-          const { data } = await supabase.from("profiles").select("*").eq("id", session.session.user.id).single()
+        const { data: { user } } = await supabase.auth.getUser()
+        if (user) {
+          const { data } = await supabase.from("profiles").select("*").eq("id", user.id).single()
           setProfile(data)
         }
       } catch (error) {

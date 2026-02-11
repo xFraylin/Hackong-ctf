@@ -52,12 +52,12 @@ export async function middleware(req: NextRequest) {
   )
 
   const {
-    data: { session },
-  } = await supabase.auth.getSession()
+    data: { user },
+  } = await supabase.auth.getUser()
 
   // Si el usuario no está autenticado y trata de acceder a rutas protegidas
   if (
-    !session &&
+    !user &&
     (req.nextUrl.pathname.startsWith("/dashboard") ||
       req.nextUrl.pathname.startsWith("/retos") ||
       req.nextUrl.pathname.startsWith("/salas") ||
@@ -69,9 +69,9 @@ export async function middleware(req: NextRequest) {
   }
 
   // Si el usuario está autenticado pero trata de acceder al panel de administración sin ser admin
-  if (session && req.nextUrl.pathname.startsWith("/admin")) {
+  if (user && req.nextUrl.pathname.startsWith("/admin")) {
     try {
-      const { data: profile, error } = await supabase.from("profiles").select("role").eq("id", session.user.id).single()
+      const { data: profile, error } = await supabase.from("profiles").select("role").eq("id", user.id).single()
 
       // Si hay un error o el usuario no es admin, redirigir al dashboard
       if (error || !profile || profile.role !== "admin") {

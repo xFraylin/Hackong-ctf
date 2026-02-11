@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { createClient } from "@/lib/supabase/client"
+import { usernameToInternalEmail } from "@/lib/config"
 import { toast } from "@/components/ui/use-toast"
 
 export default function Login() {
@@ -19,7 +20,7 @@ export default function Login() {
   const [loading, setLoading] = useState(false)
   const [checkingSession, setCheckingSession] = useState(true)
   const [formData, setFormData] = useState({
-    email: "",
+    username: "",
     password: "",
   })
 
@@ -59,8 +60,9 @@ export default function Login() {
     try {
       setLoading(true)
 
+      const internalEmail = usernameToInternalEmail(formData.username)
       const { data, error } = await supabase.auth.signInWithPassword({
-        email: formData.email,
+        email: internalEmail,
         password: formData.password,
       })
 
@@ -129,14 +131,14 @@ export default function Login() {
             <form onSubmit={handleSubmit}>
               <div className="grid gap-4">
                 <div className="grid gap-2">
-                  <Label htmlFor="email">Email</Label>
+                  <Label htmlFor="username">Usuario</Label>
                   <Input
-                    id="email"
-                    name="email"
-                    type="email"
-                    placeholder="nombre@ejemplo.com"
+                    id="username"
+                    name="username"
+                    type="text"
+                    placeholder="tu_usuario"
                     required
-                    value={formData.email}
+                    value={formData.username}
                     onChange={handleChange}
                   />
                 </div>
@@ -150,11 +152,6 @@ export default function Login() {
                     value={formData.password}
                     onChange={handleChange}
                   />
-                  <div className="text-right text-sm">
-                    <Link href="/recuperar-contrasena" className="text-primary hover:underline">
-                      ¿Olvidaste tu contraseña?
-                    </Link>
-                  </div>
                 </div>
                 <Button type="submit" disabled={loading}>
                   {loading ? "Iniciando sesión..." : "Iniciar sesión"}

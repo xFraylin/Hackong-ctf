@@ -8,14 +8,14 @@ export default async function AdminLayout({ children }: { children: React.ReactN
   const supabase = createClient()
 
   const {
-    data: { session },
-  } = await supabase.auth.getSession()
+    data: { user },
+  } = await supabase.auth.getUser()
 
-  if (!session) {
+  if (!user) {
     redirect("/login")
   }
 
-  const { data: profile } = await supabase.from("profiles").select("*").eq("id", session.user.id).single()
+  const { data: profile } = await supabase.from("profiles").select("*").eq("id", user.id).single()
 
   if (!profile || profile.role !== "admin") {
     redirect("/acceso-denegado")

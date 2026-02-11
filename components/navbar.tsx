@@ -18,26 +18,26 @@ export function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
 
   useEffect(() => {
-    const fetchSession = async () => {
+    const fetchUser = async () => {
       const {
-        data: { session },
-      } = await supabase.auth.getSession()
-      setSession(session)
+        data: { user },
+      } = await supabase.auth.getUser()
+      setSession(user ? { user } : null)
 
-      if (session) {
-        const { data } = await supabase.from("profiles").select("*").eq("id", session.user.id).single()
+      if (user) {
+        const { data } = await supabase.from("profiles").select("*").eq("id", user.id).single()
         setProfile(data)
+      } else {
+        setProfile(null)
       }
-
       setLoading(false)
     }
 
-    fetchSession()
+    fetchUser()
 
     const { data: authListener } = supabase.auth.onAuthStateChange(async (event, session) => {
       setSession(session)
-
-      if (session) {
+      if (session?.user) {
         const { data } = await supabase.from("profiles").select("*").eq("id", session.user.id).single()
         setProfile(data)
       } else {

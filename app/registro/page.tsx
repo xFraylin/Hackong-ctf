@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { createClient } from "@/lib/supabase/client"
+import { usernameToInternalEmail } from "@/lib/config"
 import { toast } from "@/components/ui/use-toast"
 
 export default function Register() {
@@ -20,7 +21,6 @@ export default function Register() {
   const [checkingSession, setCheckingSession] = useState(true)
   const [formData, setFormData] = useState({
     username: "",
-    email: "",
     password: "",
     confirmPassword: "",
   })
@@ -70,18 +70,28 @@ export default function Register() {
     try {
       setLoading(true)
 
-      const { data, error } = await supabase.auth.signUp({
-        email: formData.email,
-        password: formData.password,
-        options: {
-          data: {
-            username: formData.username,
-          },
-        },
+      const res = await fetch("/api/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          username: formData.username.trim(),
+          password: formData.password,
+        }),
       })
 
-      if (error) {
-        throw error
+      const data = await res.json().catch(() => ({}))
+      if (!res.ok) {
+        throw new Error(data.error || "Error al registrarse")
+      }
+
+      const internalEmail = usernameToInternalEmail(formData.username)
+      const { error: signInError } = await supabase.auth.signInWithPassword({
+        email: internalEmail,
+        password: formData.password,
+      })
+
+      if (signInError) {
+        throw new Error("Cuenta creada pero falló el acceso. Intenta iniciar sesión.")
       }
 
       toast({
@@ -89,7 +99,16 @@ export default function Register() {
         description: "Tu cuenta ha sido creada correctamente",
       })
 
-      router.push("/dashboard")
+      const { data: session } = await supabase.auth.getSession()
+      const userId = session?.session?.user?.id
+      const { data: profile } = userId
+        ? await supabase.from("profiles").select("role").eq("id", userId).single()
+        : { data: null }
+      if (profile?.role === "admin") {
+        router.push("/admin")
+      } else {
+        router.push("/dashboard")
+      }
     } catch (error: any) {
       toast({
         title: "Error al registrarse",
@@ -145,18 +164,6 @@ export default function Register() {
                     placeholder="usuario123"
                     required
                     value={formData.username}
-                    onChange={handleChange}
-                  />
-                </div>
-                <div className="grid gap-2">
-                  <Label htmlFor="email">Email</Label>
-                  <Input
-                    id="email"
-                    name="email"
-                    type="email"
-                    placeholder="nombre@ejemplo.com"
-                    required
-                    value={formData.email}
                     onChange={handleChange}
                   />
                 </div>
